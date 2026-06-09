@@ -1,0 +1,1 @@
+Import the data from the folder "Data_for_main/smoothed_soh_excel"
