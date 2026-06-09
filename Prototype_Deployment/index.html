@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SOH Comparison Plotter</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #f4f4f9; padding: 20px; }
+        .status-box { background: #333; color: #0f0; padding: 10px; font-family: monospace; margin: 10px auto; width: 80%; border-radius: 5px; font-size: 20px; }
+        .chart-wrapper { display: flex; justify-content: space-around; flex-wrap: wrap; }
+        .chart-container { 
+            width: 49.7%; 
+            height: 500px; 
+            min-width: 350px; 
+            background: white; 
+            padding: 0; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            margin-bottom: 20px; 
+            overflow: hidden;
+        }
+        /* Global unified font size */
+        body, h1, h3, button, .status-box {
+            font-size: 36px;
+        }
+        .chart-container canvas { width: 100% !important; height: 100% !important; display: block; }
+        /* button { padding: 15px 30px; font-size: 30px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; transition: 0.3s; margin: 5px; } */
+        button { padding: 8px 25px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; transition: 0.3s; margin: 5px; }
+        button:hover { background: #0056b3; }
+
+    </style>
+</head>
+<body>
+    <h1>Battery Health Analysis</h1>
+    <button id="connectBtn">Connect Nano 33 BLE</button>
+    <button id="updateBtn">Update Plot</button>
+    <div id="status" class="status-box">Status: Waiting for user...</div>
+    
+    <div class="chart-wrapper">
+        <div class="chart-container">
+            <h3>Historical SOH (Input)</h3>
+            <canvas id="histChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Future SOH (Forecast)</h3>
+            <canvas id="foreChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        // function log(msg){ statusDiv.innerText = "Status: " + msg; console.log(msg); }
+        function log(msg){ statusDiv.innerText = "Status: " + msg; "Data collected; Plot Updated"; }
+
+        const batchSize = 5; // must match Arduino batch size
+
+        // Historical chart with Present marker
+        const histChart = new Chart(document.getElementById('histChart'), {
+            type: 'line',
+            data: {
+                labels: Array.from({length:100},(_,i)=>i+1),
+                datasets:[
+                    { label: 'Historical %', data: [], borderColor: '#007bff', fill: false, tension: 0.2, pointRadius: 0 },
+                    { label: 'Present SOH', data: Array(100).fill(null), borderColor: 'transparent', backgroundColor: '#ff9800', pointRadius: 8, pointStyle: 'circle' }
+                ]
+            },
+            options: {
+            animation: false,
+            maintainAspectRatio: false,
+            layout: { padding: { top: 0, bottom: 110, left: 10, right: 10 } },
+            scales: {
+                x: {
+                    type: 'linear',      // numeric axis
+                    min: 1,            // start x at 101
+                    max: 100,            // end x at 200
+                    ticks: {
+                        font: { size: 25 },
+                        stepSize: 20     // show 110, 120, 130, ...
+                    }
+                },
+                y: {
+                    min: 80,
+                    max: 100,
+                    ticks: {
+                        font: { size: 25 }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: { size: 32 }
+                    }
+                }
+            }
+        }
+
+        });
+
+        // Forecast chart (no Present marker)
+        const foreChart = new Chart(document.getElementById('foreChart'), {
+            type: 'line',
+            data: {
+                labels: Array.from({ length: 100 }, (_, i) => i + 101),
+                datasets: [
+                    {
+                        label: 'Forecast %',
+                        data: [],
+                        borderColor: '#dc3545',
+                        fill: false,
+                        tension: 0.2,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                animation: false,
+                maintainAspectRatio: false,
+                layout: { padding: { top: 0, bottom: 110, left: 10, right: 10 } },
+                scales: {
+                x: {
+                    type: 'linear',      // numeric axis
+                    min: 101,            // start x at 101
+                    max: 200,            // end x at 200
+                    ticks: {
+                        font: { size: 25 },
+                        stepSize: 20     // show 110, 120, 130, ...
+                    }
+                },
+
+                    y: {
+                        min: 80,
+                        max: 100,
+                        ticks: {
+                            font: { size: 25 }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: { size: 32 }
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+        let histData = [], foreData = [];
+        let updateChar = null; // BLE characteristic to request snapshot
+
+        // Connect to BLE
+        document.getElementById('connectBtn').addEventListener('click', async () => {
+            log("Opening device selector...");
+            try {
+                const device = await navigator.bluetooth.requestDevice({
+                    filters:[{name:'Nano33_SOH_Split'}],
+                    optionalServices:[0x180C]
+                });
+
+                log("Connecting...");
+                const server = await device.gatt.connect();
+                const service = await server.getPrimaryService(0x180C);
+
+                const hChar = await service.getCharacteristic(0x2A58);
+                const fChar = await service.getCharacteristic(0x2A59);
+                updateChar = await service.getCharacteristic(0x2A5A);
+
+                histData=[]; foreData=[];
+
+                await hChar.startNotifications();
+                hChar.addEventListener('characteristicvaluechanged', e=>{
+                    const val = e.target.value.getFloat32(0,true);
+                    histData.push(val);
+                    histChart.data.datasets[0].data = histData;
+
+                    // Update Present SOH marker (last point only in historical)
+                    const lastIndex = histData.length - 1;
+                    histChart.data.datasets[1].data.fill(null);
+                    if(lastIndex >= 0) histChart.data.datasets[1].data[lastIndex] = histData[lastIndex];
+
+                    histChart.update('none');
+
+                });
+
+                await fChar.startNotifications();
+                fChar.addEventListener('characteristicvaluechanged', e=>{
+                    const val = e.target.value.getFloat32(0,true);
+                    foreData.push(val);
+                    foreChart.data.datasets[0].data = foreData;
+                    foreChart.update('none');
+
+    
+                });
+
+                log("Connected!");
+                document.getElementById('connectBtn').innerText="Connected";
+                document.getElementById('connectBtn').style.background="#28a745";
+
+            } catch(err){
+                log("Error: "+err.message);
+                console.error(err);
+            }
+        });
+
+        // Request snapshot update
+        document.getElementById('updateBtn').addEventListener('click', async () => {
+            if(!updateChar){ log("BLE not connected"); return; }
+            histData=[]; foreData=[];
+            await updateChar.writeValue(new Uint8Array([1])); // trigger snapshot
+            log("Requesting latest SOH data...");
+        });
+    </script>
+</body>
+</html>

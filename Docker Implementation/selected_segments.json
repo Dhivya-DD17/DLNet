@@ -1,0 +1,146 @@
+[
+  {
+    "battery": "Bat018_SOH",
+    "start": 290,
+    "end": 490,
+    "soh_range": "medium",
+    "avg_soh": 0.9339058850071333,
+    "min_soh": 0.8923508983762911,
+    "max_soh": 0.9608134745315483
+  },
+  {
+    "battery": "Bat032_SOH",
+    "start": 500,
+    "end": 700,
+    "soh_range": "medium",
+    "avg_soh": 0.9061530281466443,
+    "min_soh": 0.8211530649910286,
+    "max_soh": 0.9665336260343456
+  },
+  {
+    "battery": "Bat008_SOH",
+    "start": 660,
+    "end": 860,
+    "soh_range": "low",
+    "avg_soh": 0.8888165589081615,
+    "min_soh": 0.8117010902921495,
+    "max_soh": 0.9444835088313634
+  },
+  {
+    "battery": "Bat004_SOH",
+    "start": 940,
+    "end": 1140,
+    "soh_range": "high",
+    "avg_soh": 0.9512024098993679,
+    "min_soh": 0.9288150715967189,
+    "max_soh": 0.9667262573528157
+  },
+  {
+    "battery": "Bat036_SOH",
+    "start": 720,
+    "end": 920,
+    "soh_range": "medium",
+    "avg_soh": 0.9049075681407888,
+    "min_soh": 0.8484000886925066,
+    "max_soh": 0.9462363963854264
+  },
+  {
+    "battery": "Bat095_SOH",
+    "start": 610,
+    "end": 810,
+    "soh_range": "medium",
+    "avg_soh": 0.9082784736048489,
+    "min_soh": 0.8291244101185108,
+    "max_soh": 0.9536085411533302
+  },
+  {
+    "battery": "Bat015_SOH",
+    "start": 380,
+    "end": 580,
+    "soh_range": "high",
+    "avg_soh": 0.9519738189156692,
+    "min_soh": 0.9240306932861068,
+    "max_soh": 0.967026233935288
+  },
+  {
+    "battery": "Bat020_SOH",
+    "start": 780,
+    "end": 980,
+    "soh_range": "medium",
+    "avg_soh": 0.9037240637507713,
+    "min_soh": 0.8471413850361225,
+    "max_soh": 0.9459970523347526
+  },
+  {
+    "battery": "Bat101_SOH",
+    "start": 1110,
+    "end": 1310,
+    "soh_range": "low",
+    "avg_soh": 0.8771135274470555,
+    "min_soh": 0.8302083807881846,
+    "max_soh": 0.9219544279047784
+  },
+  {
+    "battery": "Bat006_SOH",
+    "start": 410,
+    "end": 610,
+    "soh_range": "high",
+    "avg_soh": 0.9850941756045823,
+    "min_soh": 0.9767908678893016,
+    "max_soh": 0.9918192041079888
+  },
+  {
+    "battery": "Bat006_SOH",
+    "start": 790,
+    "end": 990,
+    "soh_range": "medium",
+    "avg_soh": 0.9339854295947034,
+    "min_soh": 0.8911854192913873,
+    "max_soh": 0.9583550896029622
+  },
+  {
+    "battery": "Bat083_SOH",
+    "start": 150,
+    "end": 350,
+    "soh_range": "high",
+    "avg_soh": 0.9894604733932149,
+    "min_soh": 0.9553049835792353,
+    "max_soh": 1.004263138739138
+  },
+  {
+    "battery": "Bat119_SOH",
+    "start": 1730,
+    "end": 1930,
+    "soh_range": "low",
+    "avg_soh": 0.8640141267586516,
+    "min_soh": 0.8248939631635688,
+    "max_soh": 0.8966140403238774
+  },
+  {
+    "battery": "Bat009_SOH",
+    "start": 850,
+    "end": 1050,
+    "soh_range": "low",
+    "avg_soh": 0.8852538458140268,
+    "min_soh": 0.8147852431611959,
+    "max_soh": 0.9352762253667989
+  },
+  {
+    "battery": "Bat096_SOH",
+    "start": 350,
+    "end": 550,
+    "soh_range": "high",
+    "avg_soh": 0.9892773513918205,
+    "min_soh": 0.9819652544580115,
+    "max_soh": 0.9945961331834894
+  },
+  {
+    "battery": "Bat029_SOH",
+    "start": 490,
+    "end": 690,
+    "soh_range": "medium",
+    "avg_soh": 0.9309318782041197,
+    "min_soh": 0.866254395768563,
+    "max_soh": 0.9692939409194049
+  }
+]

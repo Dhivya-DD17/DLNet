@@ -1,0 +1,1 @@
+Use the models from "Model Compression all" folder
