@@ -12,7 +12,9 @@ Keywords: Distillation · Battery analytics · Edge intelligence.
 ![Alt text](DLNet_system_architecture.png)
 
 ## Code Implementation - Folder contents
-* **Data_for_Main**: Data
+
+Refer "**Install.md**" for details on required hardware, software, and libraries to be installed.
+* **Data_for_Main**: Dataset
 * **Model train and Figure**: Teacher models training
 * **Model Compression All**: DLNet Compression
 * **Docker Implementation**: TFLite Conversion via Docker
