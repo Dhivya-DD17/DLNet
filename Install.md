@@ -1,23 +1,23 @@
-### System Requirements
+## System Requirements
 
-## System Hardware:
+### System Hardware:
 
 * CPU: Intel(R) Core(TM) i7-13650HX (2.60 GHz) 
 * RAM: 16 GB DDR5
 * GPU: NVIDIA RTX 4050 (8 GB)
 
-## Operating System
+### Operating System
 
 * Windows 11
 
-## Software Requirements
+### Software Requirements
 * VScode
 
-## Python
+### Python
 
 * Python 3.10.19
 
-## Main Libraries
+### Main Libraries
 
 * absl-py
 * torch==2.9.0
@@ -41,7 +41,9 @@
 * codecarbon
 * psutil
 
-## Running Experiments - Folder Contents
+## Running Experiments 
+
+### Folder Contents
 
 * **Data_for_Main**: Data
 * **Model train and Figure**: Teacher models training
@@ -49,18 +51,18 @@
 * **Docker Implementation**: TFLite Conversion via Docker
 * **Prototype_Deployment**: Arduino deployment and Web Interface
 
-## Expected Runtime
+### Expected Runtime
 
 * Training (200 epochs): 2 to 5 mins
 * Compression: 15 mins
 * Inference: 0.5 to 2 ms (21 ms on Arduino Nano)
 
-## Reproducibility
+### Reproducibility
 
 * To reproduce the results, use the saved models from the folders "Model train anf Figure" and "Model Compression All" for teacher and compressed models (using DLNet).
 
 
-### Docker:
+## Docker:
 
 TFLite Conversion and Reproducible Model testing
 * Tflite_convert.py - further compress the compressed Pytorch models to Tflite models.
@@ -70,11 +72,11 @@ TFLite Conversion and Reproducible Model testing
 (All the necessary files are available in the folder "Docker Implementation". The requirements are given in "requirements.txt")
 
 
-### Arduino Deployment (Optional):
+## Arduino Deployment (Optional):
 
 This is only a prototype, by direclty feeding the input data; the external data are also collected for reference purposes. (Refer "Circuit Connection.png" for the circuit setup)
 
-## Hardware:
+### Hardware:
 
 * Arduino Nano 33 BLE Sense Rev 2
 * INA219 module
@@ -83,16 +85,16 @@ This is only a prototype, by direclty feeding the input data; the external data 
 * IRF18650 LiFePO4 Battery
 
 
-## Software:
+### Software:
 
 * Arduino IDE
 * Web Interface - VSCode, Google Chrome/ Microsoft Edge
 
-## Programming languages:
+### Programming languages:
 * C++
 * Html
 
-## Libraries:
+### Libraries:
 * Arduino
 * Wire
 * ArduinoBLE
@@ -101,7 +103,7 @@ This is only a prototype, by direclty feeding the input data; the external data 
 * DFRobot_RGBLCD1602
 * Chirale_TensorFlowLite
 
-## Instructions
+### Instructions
 
 The code and model for deployment are found in the folder "Prototype_Deployment"
 
