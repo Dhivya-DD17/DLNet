@@ -64,17 +64,22 @@
 
 ## Docker:
 
-TFLite Conversion and Reproducible Model testing
-* Tflite_convert.py - further compress the compressed Pytorch models to Tflite models.
+TFLite Conversion and Reproducible Model Testing
+* Tflite_convert.py - further compress the compressed PyTorch models to TFLite models.
 * Tflite_test.py - test TFLite models.
-* Pytorch_test.py - test teacher and compressed Pytorch models.
+* Pytorch_test.py - test teacher and compressed PyTorch models.
 
 (All the necessary files are available in the folder "Docker Implementation". The requirements are given in "requirements.txt")
-
+Some packages from nightly are no longer available and may cause issues in rebuilding. So, for reproducibility, we provide the pre-built Docker image to the GitHub Container Registry (GHCR).
+Pull and run the image using:
+```bash
+docker pull ghcr.io/dhivya-dd17/dlnet:docker_dlnet
+docker run --rm ghcr.io/dhivya-dd17/dlnet:docker_dlnet
+```
 
 ## Arduino Deployment (Optional):
 
-This is only a prototype, by direclty feeding the input data; the external data are also collected for reference purposes. (Refer "Circuit Connection.png" for the circuit setup)
+This is only a prototype, by directly feeding the input data; the external data are also collected for reference purposes. (Refer "Circuit Connection.png" for the circuit setup)
 
 ### Hardware:
 
