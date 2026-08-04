@@ -20,6 +20,13 @@ Refer "**Install.md**" for details on required hardware, software, and libraries
 * **Docker Implementation**: TFLite Conversion via Docker
 * **Prototype_Deployment**: Arduino deployment and Web Interface
 
+Note: Some packages from nightly are no longer available and may cause issues in rebuilding. So, for reproducibility, we provide the pre-built Docker image to the GitHub Container Registry (GHCR).
+Pull and run the image using:
+```bash
+docker pull ghcr.io/dhivya-dd17/dlnet:docker_dlnet
+docker run --rm ghcr.io/dhivya-dd17/dlnet:docker_dlnet
+```
+
 ## Citation
 
 If you find this repository useful for your research, please cite our paper:
