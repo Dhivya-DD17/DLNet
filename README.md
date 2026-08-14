@@ -1,6 +1,6 @@
 # When Smaller Wins: Dual-Stage Distillation and Pareto-Guided Compression of Liquid Neural Networks for Edge Battery Prognostics
 
-This repo is the official implementation of the paper "When Smaller Wins: Dual-Stage Distillation and Pareto-Guided Compression of Liquid Neural Networks for Edge Battery Prognostics", International Conference on Pattern Recognition, ICPR 2026. DOI: 10.48550/ARXIV.2601.06227
+This repo is the official implementation of the paper [When Smaller Wins: Dual-Stage Distillation and Pareto-Guided Compression of Liquid Neural Networks for Edge Battery Prognostics. Pattern Recognition. ICPR 2026. Lecture Notes in Computer Science, vol 16820. Springer, Cham.](https://doi.org/10.1007/978-3-032-31441-3_28)
 
 Contributors: Dhivya Dharshini Kannan; Wei Li; Wei Zhang; Jianbiao Wang; Zhi Wei Seh; Man-Fai Ng
 
@@ -32,16 +32,20 @@ docker run --rm ghcr.io/dhivya-dd17/dlnet:docker_dlnet
 If you find this repository useful for your research, please cite our paper:
 
 ```bibtex
-@misc{https://doi.org/10.48550/arxiv.2601.06227,
-    doi = {10.48550/ARXIV.2601.06227},
-    url = {https://arxiv.org/abs/2601.06227},
-    author = {Kannan, Dhivya Dharshini and Li, Wei and Zhang, Wei and Wang, Jianbiao and Seh, Zhi Wei and Ng, Man-Fai},
-    title = {When Smaller Wins: Dual-Stage Distillation and Pareto-Guided Compression of Liquid Neural Networks for Edge Battery Prognostics},
-    publisher = {arXiv},
-    year = {2026}
+@inproceedings{10.1007/978-3-032-31441-3_28},
+  author = {Kannan, Dhivya Dharshini and Li, Wei and Zhang, Wei and Wang, Jianbiao and Seh, Zhi Wei and Ng, Man-Fai},
+  title = {When Smaller Wins: Dual-Stage Distillation and Pareto-Guided Compression of Liquid Neural Networks for Edge Battery Prognostics},
+  booktitle = {Pattern Recognition},
+  year = {2027},
+  publisher = {Springer Nature Switzerland},
+  address = {Cham},
+  pages = {414--429},
+  isbn = {978-3-032-31441-3},
+  doi = {10.1007/978-3-032-31441-3_28},
+  url = {https://doi.org/10.1007/978-3-032-31441-3_28}
 }
 ```
-Accepted at ICPR 2026. Official citation will be updated once the proceedings are available.
+
 
 
 
